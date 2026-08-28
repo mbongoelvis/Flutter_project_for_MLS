@@ -20,6 +20,14 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Download Nunito fonts
+        run: |
+          mkdir -p assets/fonts
+          curl -fsSL "https://github.com/google/fonts/raw/main/ofl/nunito/Nunito%5Bwght%5D.ttf" \
+            -o assets/fonts/Nunito-Regular.ttf
+          cp assets/fonts/Nunito-Regular.ttf assets/fonts/Nunito-SemiBold.ttf
+          cp assets/fonts/Nunito-Regular.ttf assets/fonts/Nunito-Bold.ttf
+
       - name: Generate web icons
         run: |
           sudo apt-get install -y imagemagick
