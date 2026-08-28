@@ -20,6 +20,21 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Generate web icons
+        run: |
+          sudo apt-get install -y imagemagick
+          mkdir -p web/icons
+          for size in 192 512; do
+            convert -size ${size}x${size} xc:'#E8633A' \
+              -fill white -font DejaVu-Sans-Bold -pointsize $((size/3)) \
+              -gravity Center -annotate 0 'F' \
+              web/icons/Icon-${size}.png
+            cp web/icons/Icon-${size}.png web/icons/Icon-maskable-${size}.png
+          done
+          convert -size 32x32 xc:'#E8633A' -fill white \
+            -font DejaVu-Sans-Bold -pointsize 18 \
+            -gravity Center -annotate 0 'F' web/favicon.png
+
       - name: Create dummy .env for build check
         run: echo "GEMINI_API_KEY=dummy_key_for_ci" > .env
 

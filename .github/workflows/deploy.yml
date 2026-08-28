@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ─── 1. ANALYZE & TEST ───────────────────────────────────────────────────────
+  # ─── 1. ANALYZE ──────────────────────────────────────────────────────────────
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
@@ -55,6 +55,21 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Generate web icons (imagemagick)
+        run: |
+          sudo apt-get install -y imagemagick
+          mkdir -p web/icons
+          for size in 192 512; do
+            convert -size ${size}x${size} xc:'#E8633A' \
+              -fill white -font DejaVu-Sans-Bold -pointsize $((size/3)) \
+              -gravity Center -annotate 0 'F' \
+              web/icons/Icon-${size}.png
+            cp web/icons/Icon-${size}.png web/icons/Icon-maskable-${size}.png
+          done
+          convert -size 32x32 xc:'#E8633A' -fill white \
+            -font DejaVu-Sans-Bold -pointsize 18 \
+            -gravity Center -annotate 0 'F' web/favicon.png
+
       - name: Inject .env from GitHub Secret
         run: echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
 
@@ -84,7 +99,7 @@ jobs:
         id: deploy
         uses: actions/deploy-pages@v4
 
-  # ─── 4. BUILD ANDROID APK (optional, on main only) ───────────────────────────
+  # ─── 4. BUILD ANDROID APK ────────────────────────────────────────────────────
   build-android:
     name: Build Android APK
     runs-on: ubuntu-latest
