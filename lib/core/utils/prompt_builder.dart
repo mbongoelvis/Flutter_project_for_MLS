@@ -1,9 +1,7 @@
-import '../../domain/models/dietary_option.dart';
 import '../../domain/models/allergy.dart';
 import '../../domain/models/health_goal.dart';
 import '../../domain/models/spice_level.dart';
 import '../../domain/models/user_preferences.dart';
-import '../constants/app_constants.dart';
 
 abstract final class PromptBuilder {
   static String build(

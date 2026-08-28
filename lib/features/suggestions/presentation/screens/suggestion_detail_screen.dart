@@ -42,7 +42,7 @@ class SuggestionDetailScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       _cuisineColor(suggestion.cuisine),
-                      _cuisineColor(suggestion.cuisine).withValues(alpha: 0.7),
+                      _cuisineColor(suggestion.cuisine).withOpacity(0.7),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -191,7 +191,7 @@ class SuggestionDetailScreen extends StatelessWidget {
                                     horizontal: 10, vertical: 5),
                                 decoration: BoxDecoration(
                                   color: AppColors.secondary
-                                      .withValues(alpha: 0.1),
+                                      .withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Text(
@@ -298,9 +298,9 @@ class _InfoChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.1),
+        color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color.withValues(alpha: 0.3), width: 1),
+        border: Border.all(color: color.withOpacity(0.3), width: 1),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

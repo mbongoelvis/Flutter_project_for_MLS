@@ -7,7 +7,7 @@ import 'package:flavr/data/local/hive_service.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Load environment variables before anything else
+  // Load environment variables (.env is committed as a placeholder; real key injected by CI)
   await dotenv.load(fileName: '.env');
 
   // Initialize Hive and open required boxes

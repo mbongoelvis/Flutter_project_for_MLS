@@ -4,6 +4,7 @@ import '../../../domain/models/cuisine_type.dart';
 import '../../../domain/models/dietary_option.dart';
 import '../../../domain/models/health_goal.dart';
 import '../../../domain/models/spice_level.dart';
+import '../../../domain/models/user_preferences.dart';
 import '../../../providers.dart';
 import 'onboarding_state.dart';
 
@@ -101,8 +102,8 @@ class OnboardingNotifier extends StateNotifier<OnboardingState> {
     state = OnboardingState.initial();
   }
 
-  Future<void> loadExistingPreferences() async {
-    final prefs =
+  Future<void> loadExistingPreferences([UserPreferences? existing]) async {
+    final prefs = existing ??
         await _ref.read(preferencesRepositoryProvider).loadPreferences();
     if (prefs != null) {
       state = state.copyWith(draft: prefs);

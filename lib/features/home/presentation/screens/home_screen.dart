@@ -7,7 +7,6 @@ import 'package:flavr/core/widgets/flavr_button.dart';
 import 'package:flavr/core/widgets/loading_overlay.dart';
 import 'package:flavr/features/suggestions/presentation/widgets/suggestion_card.dart';
 import 'package:flavr/features/suggestions/providers/suggestions_provider.dart';
-import 'package:flavr/providers.dart';
 import 'package:flavr/router/route_names.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -220,10 +219,10 @@ class _QuickActionCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20),
         decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.1),
+          color: color.withOpacity(0.1),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: color.withValues(alpha: 0.2),
+            color: color.withOpacity(0.2),
             width: 1,
           ),
         ),

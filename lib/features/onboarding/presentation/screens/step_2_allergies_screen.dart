@@ -66,7 +66,7 @@ class _Step2AllergiesScreenState extends ConsumerState<Step2AllergiesScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     decoration: BoxDecoration(
                       color: _noneSelected
-                          ? AppColors.success.withValues(alpha: 0.1)
+                          ? AppColors.success.withOpacity(0.1)
                           : Colors.white,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(

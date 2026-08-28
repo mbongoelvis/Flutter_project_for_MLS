@@ -72,7 +72,7 @@ class _ProgressStepperState extends State<ProgressStepper>
                     borderRadius: BorderRadius.circular(5),
                     color: isCompleted
                         ? AppColors.primary
-                        : AppColors.textHint.withValues(alpha: 0.35),
+                        : AppColors.textHint.withOpacity(0.35),
                   ),
                 ),
         );
@@ -97,7 +97,7 @@ class _Dot extends StatelessWidget {
         color: color,
         boxShadow: [
           BoxShadow(
-            color: color.withValues(alpha: 0.45),
+            color: color.withOpacity(0.45),
             blurRadius: 6,
             spreadRadius: 1,
           ),

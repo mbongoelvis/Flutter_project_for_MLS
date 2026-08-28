@@ -25,12 +25,12 @@ class FlavrChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected
               ? AppColors.primary
-              : AppColors.primary.withValues(alpha: 0.12),
+              : AppColors.primary.withOpacity(0.12),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: isSelected
                 ? AppColors.primary
-                : AppColors.primary.withValues(alpha: 0.25),
+                : AppColors.primary.withOpacity(0.25),
             width: 1.5,
           ),
         ),

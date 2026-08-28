@@ -32,7 +32,7 @@ class FoodSuggestion extends Equatable {
 
   factory FoodSuggestion.fromJson(Map<String, dynamic> json) {
     // Helper to read a key by either camelCase or snake_case
-    T? _get<T>(String camel, String snake) =>
+    T? getField<T>(String camel, String snake) =>
         (json[camel] ?? json[snake]) as T?;
 
     return FoodSuggestion(
@@ -40,8 +40,8 @@ class FoodSuggestion extends Equatable {
       name: (json['name'] as String?) ?? 'Unknown Dish',
       description: (json['description'] as String?) ?? '',
       cuisine: (json['cuisine'] as String?) ?? 'International',
-      ingredients: (_get<List>('ingredients', 'ingredients') != null)
-          ? List<String>.from(_get<List>('ingredients', 'ingredients')!)
+      ingredients: (getField<List>('ingredients', 'ingredients') != null)
+          ? List<String>.from(getField<List>('ingredients', 'ingredients')!)
           : [],
       macros: json['macros'] != null
           ? Map<String, int>.from(
@@ -50,20 +50,20 @@ class FoodSuggestion extends Equatable {
               ),
             )
           : {'calories': 0, 'protein_g': 0, 'carbs_g': 0, 'fat_g': 0},
-      dietaryTags: (_get<List>('dietaryTags', 'dietary_tags') != null)
-          ? List<String>.from(_get<List>('dietaryTags', 'dietary_tags')!)
+      dietaryTags: (getField<List>('dietaryTags', 'dietary_tags') != null)
+          ? List<String>.from(getField<List>('dietaryTags', 'dietary_tags')!)
           : [],
       prepTimeMinutes:
-          ((_get<num>('prepTimeMinutes', 'prep_time_minutes')) ?? 30).toInt(),
+          ((getField<num>('prepTimeMinutes', 'prep_time_minutes')) ?? 30).toInt(),
       spiceLevelValue:
-          ((_get<num>('spiceLevelValue', 'spice_level_value')) ?? 0)
+          ((getField<num>('spiceLevelValue', 'spice_level_value')) ?? 0)
               .toInt()
               .clamp(0, 4),
-      whyItFitsYou: (_get<List>('whyItFitsYou', 'why_it_fits_you') != null)
-          ? List<String>.from(_get<List>('whyItFitsYou', 'why_it_fits_you')!)
+      whyItFitsYou: (getField<List>('whyItFitsYou', 'why_it_fits_you') != null)
+          ? List<String>.from(getField<List>('whyItFitsYou', 'why_it_fits_you')!)
           : [],
       imageSearchQuery:
-          (_get<String>('imageSearchQuery', 'image_search_query')) ??
+          (getField<String>('imageSearchQuery', 'image_search_query')) ??
               (json['name'] as String? ?? 'food dish'),
       suggestedAt: DateTime.now(),
     );
