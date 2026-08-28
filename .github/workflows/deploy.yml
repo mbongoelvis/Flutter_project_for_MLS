@@ -87,6 +87,14 @@ jobs:
             -font DejaVu-Sans-Bold -pointsize 18 \
             -gravity Center -annotate 0 'F' web/favicon.png
 
+      - name: Generate web platform structure
+        run: |
+          flutter create --platforms web \
+            --org com.flavr \
+            --project-name flavr \
+            --overwrite \
+            .
+
       - name: Inject .env from GitHub Secret
         run: echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
 
@@ -138,6 +146,22 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: Download Nunito fonts
+        run: |
+          mkdir -p assets/fonts
+          curl -fsSL "https://github.com/google/fonts/raw/main/ofl/nunito/Nunito%5Bwght%5D.ttf" \
+            -o assets/fonts/Nunito-Regular.ttf
+          cp assets/fonts/Nunito-Regular.ttf assets/fonts/Nunito-SemiBold.ttf
+          cp assets/fonts/Nunito-Regular.ttf assets/fonts/Nunito-Bold.ttf
+
+      - name: Generate Android project structure
+        run: |
+          flutter create --platforms android \
+            --org com.flavr \
+            --project-name flavr \
+            --overwrite \
+            .
 
       - name: Inject .env from GitHub Secret
         run: echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
