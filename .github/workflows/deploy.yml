@@ -103,7 +103,7 @@ jobs:
           flutter build web \
             --release \
             --base-href "/" \
-            --web-renderer canvaskit
+            --web-renderer html
 
       - name: Upload web artifact
         uses: actions/upload-pages-artifact@v3

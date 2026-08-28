@@ -135,23 +135,34 @@ class HomeScreen extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(
                           vertical: AppSpacing.lg),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('🍽️', style: TextStyle(fontSize: 48)),
+                          const Text('😕', style: TextStyle(fontSize: 40)),
                           const SizedBox(height: AppSpacing.sm),
                           const Text(
-                            'No suggestions yet',
+                            'Couldn\'t load suggestions',
                             style: TextStyle(
                               fontFamily: 'Nunito',
-                              fontSize: 15,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 16,
+                              color: AppColors.textPrimary,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            e.toString().replaceFirst('Exception: ', ''),
+                            style: const TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 13,
                               color: AppColors.textSecondary,
                             ),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: AppSpacing.md),
                           FlavrButton(
-                            label: 'Get Suggestions',
-                            onPressed: () => ref
-                                .read(suggestionsProvider.notifier)
-                                .regenerate(),
+                            label: 'Try Again',
+                            onPressed: () => ref.invalidate(suggestionsProvider),
                           ),
                         ],
                       ),
